@@ -1,5 +1,7 @@
 
 import React from 'react';
+import foto1 from "../assets/logo.jpg";
+
 
 const About: React.FC = () => {
   return (
@@ -36,13 +38,13 @@ const About: React.FC = () => {
         <div className="relative order-1 lg:order-2">
           <div className="aspect-[4/5] overflow-hidden rounded-sm border border-zinc-800">
             <img 
-              src="https://images.unsplash.com/photo-1590204753856-4aa8add44455?auto=format&fit=crop&q=80&w=1000" 
+              src={foto1}
               alt="Artista trabajando" 
               className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-700"
             />
           </div>
           <div className="absolute -bottom-6 -right-6 bg-purple-700 p-8 hidden md:block border-neon">
-            <p className="text-white font-tattoo text-3xl">Desde 2015</p>
+            <p className="text-white font-tattoo text-3xl">Desde 2021</p>
             <p className="text-purple-200 text-xs uppercase tracking-widest">Creando Legados</p>
           </div>
         </div>

@@ -1,19 +1,23 @@
 
 import React, { useState } from 'react';
 import type { GalleryImage } from '../types';
+import foto1 from "../assets/logo.jpg";
 
 const IMAGES: GalleryImage[] = [
-  { id: 1, url: 'https://images.unsplash.com/photo-1560707303-4e980ce876ad?auto=format&fit=crop&q=80&w=800', title: 'Realismo Negro', category: 'Sombra' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1542332213-31f87348057f?auto=format&fit=crop&q=80&w=800', title: 'Neo-Traditional', category: 'Color' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&q=80&w=800', title: 'Geometría Sagrada', category: 'Línea' },
-  { id: 4, url: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=800', title: 'Japanese Art', category: 'Color' },
-  { id: 5, url: 'https://images.unsplash.com/photo-1550537687-c91072c4792d?auto=format&fit=crop&q=80&w=800', title: 'Micro-Realismo', category: 'Línea' },
-  { id: 6, url: 'https://images.unsplash.com/photo-1590204753856-4aa8add44455?auto=format&fit=crop&q=80&w=800', title: 'Skull Portrait', category: 'Sombra' },
+  { id: 1, url: foto1, title: 'Realismo Negro', category: 'Pixel' },
+  { id: 2, url: foto1, title: 'Neo-Traditional', category: 'Color' },
+  { id: 3, url: foto1, title: 'Geometría Sagrada', category: 'Línea' },
+  { id: 4, url: foto1, title: 'Japanese Art', category: 'Color' },
+  { id: 5, url: foto1, title: 'Micro-Realismo', category: 'Línea' },
+  { id: 6, url: foto1, title: 'Skull Portrait', category: 'Sombra' },
+  { id: 7, url: foto1, title: 'Japanese Art', category: 'Color' },
+  { id: 8, url: foto1, title: 'Micro-Realismo', category: 'Línea' },
+  { id: 9, url: foto1, title: 'Skull Portrait', category: 'Sombra' },
 ];
 
 const Gallery: React.FC = () => {
   const [filter, setFilter] = useState('Todos');
-  const categories = ['Todos', 'Color', 'Sombra', 'Línea'];
+  const categories = ['Todos', 'Color', 'Sombra', 'Pixel', 'Línea'];
 
   const filteredImages = filter === 'Todos' 
     ? IMAGES 
