@@ -26,28 +26,30 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           </div>
           
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-10">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-300 ${
-                    activeSection === link.id
-                      ? 'text-purple-500'
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a 
-                href="#contacto" 
-                className="bg-purple-700 hover:bg-purple-600 text-white px-5 py-2 text-[10px] font-bold uppercase tracking-widest transition-all"
-              >
-                Citarse
-              </a>
-            </div>
-          </div>
+  <div className="ml-10 flex items-center space-x-10">
+    {navLinks.map((link) => (
+      <a
+        key={link.name}
+        href={link.href}
+        className={`text-sm lg:text-base font-bold uppercase tracking-[0.25em] transition-all duration-300 ${
+          activeSection === link.id
+            ? 'text-purple-500'
+            : 'text-gray-400 hover:text-white'
+        }`}
+      >
+        {link.name}
+      </a>
+    ))}
+
+    <a
+      href="#contacto"
+      className="bg-purple-700 hover:bg-purple-600 text-white px-5 py-2 text-sm lg:text-base font-bold uppercase tracking-widest transition-all"
+    >
+      Citarse
+    </a>
+  </div>
+</div>
+
 
           <div className="md:hidden">
             <button
