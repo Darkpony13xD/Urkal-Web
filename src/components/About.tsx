@@ -1,56 +1,78 @@
+import logo from "../assets/urkal-emblem-v2.png";
 
-import React from 'react';
-import foto1 from "../assets/logo.jpg";
-
-
-const About: React.FC = () => {
+const steps = [
+  [
+    "01",
+    "La idea",
+    "Nos cuentas qué quieres llevar en la piel: referencias, significado, zona y tamaño.",
+  ],
+  [
+    "02",
+    "El diseño",
+    "Conversamos sobre el estilo y los detalles para definir una dirección contigo.",
+  ],
+  [
+    "03",
+    "La sesión",
+    "Acordamos los siguientes pasos, resolvemos tus dudas y preparamos tu cita.",
+  ],
+  [
+    "04",
+    "Lo que sigue",
+    "Al terminar, te explicamos los cuidados de tu pieza y cómo dar seguimiento.",
+  ],
+];
+export default function About() {
   return (
-    <div className="max-w-7xl mx-auto px-6 sm:px-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className="space-y-8 order-2 lg:order-1">
-          <div className="inline-block h-1 w-20 bg-purple-600"></div>
-          <h2 className="text-5xl md:text-6xl font-tattoo text-white leading-tight">
-            Nuestra <span className="text-purple-500">Filosofía</span>
+    <div className="container">
+      <div className="studio-grid">
+        <div className="studio-statement">
+          <p className="eyebrow">EL ESTUDIO</p>
+          <h2 id="studio-title">
+            Manos que crean.
+            <br />
+            <span className="tattoo-type">Tinta que cuenta.</span>
           </h2>
-          <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
-            <p>
-              En <span className="text-white font-semibold">URKAL INK TATTOO</span> rompemos los límites de lo convencional. No somos solo un local, somos un refugio para los que buscan marcar su piel con significado y técnica superior.
-            </p>
-            <p>
-              Especialistas en <span className="text-purple-400">Blackwork, Realismo y New School</span>. Cada sesión es un ritual de precisión donde tu visión se fusiona con nuestra maestría.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-8 pt-4">
-            <div>
-              <h4 className="text-4xl font-tattoo text-white">01.</h4>
-              <p className="text-purple-500 font-bold uppercase text-xs tracking-widest mt-2">Higiene Médica</p>
-              <p className="text-sm text-gray-500 mt-1">Estándares quirúrgicos en cada proceso.</p>
-            </div>
-            <div>
-              <h4 className="text-4xl font-tattoo text-white">02.</h4>
-              <p className="text-purple-500 font-bold uppercase text-xs tracking-widest mt-2">Arte Único</p>
-              <p className="text-sm text-gray-500 mt-1">Cero copias. Diseño 100% original.</p>
-            </div>
-          </div>
+          <p>
+            La técnica importa. Lo que quieres expresar, también. En URKAL INK
+            unimos ambos para crear piezas que se sientan tuyas, desde el primer
+            trazo.
+          </p>
+          <a href="#contacto" className="text-link">
+            Conversemos sobre tu tatuaje <span aria-hidden="true">↗</span>
+          </a>
         </div>
-
-        <div className="relative order-1 lg:order-2">
-          <div className="aspect-[4/5] overflow-hidden rounded-sm border border-zinc-800">
-            <img 
-              src={foto1}
-              alt="Artista trabajando" 
-              className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-700"
-            />
-          </div>
-          <div className="absolute -bottom-6 -right-6 bg-purple-700 p-8 hidden md:block border-neon">
-            <p className="text-white font-tattoo text-3xl">Desde 2021</p>
-            <p className="text-purple-200 text-xs uppercase tracking-widest">Creando Legados</p>
-          </div>
+        <div className="studio-seal">
+          <img
+            src={logo}
+            alt="Sello de URKAL INK TATTOO"
+            width="200"
+            height="200"
+            loading="lazy"
+          />
+          <span className="mono">
+            INDEPENDIENTE POR NATURALEZA.
+            <br />
+            PERSONAL POR DEFINICIÓN.
+          </span>
         </div>
+      </div>
+      <div className="process-heading">
+        <span className="eyebrow">DE UNA IDEA A TU PIEL</span>
+        <span className="mono">ASÍ LO HACEMOS</span>
+      </div>
+      <div className="process-grid">
+        {steps.map(([number, title, text]) => (
+          <article key={number}>
+            <span className="process-number">
+              {number}
+              <span aria-hidden="true">↗</span>
+            </span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
       </div>
     </div>
   );
-};
-
-export default About;
+}

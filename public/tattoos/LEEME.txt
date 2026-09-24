@@ -1,0 +1,4 @@
+Coloca aquí las fotografías de los tatuajes.
+Después asigna su ruta, título, categoría y descripción en src/data/site.ts.
+Ejemplo: url: '/tattoos/pieza-01.webp'
+Las fotos aparecerán en la galería y podrán ampliarse con un clic.

@@ -1,15 +1,9 @@
-
+export type TattooCategory = "Blackwork" | "Línea" | "Ornamental";
 export interface GalleryImage {
   id: number;
-  url: string;
+  url: string | null;
   title: string;
-  category: string;
-}
-
-export interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-  specialty: string;
+  category: TattooCategory;
+  description: string;
+  motif: "star" | "blade" | "orbit" | "botanical" | "butterfly" | "sigil";
 }

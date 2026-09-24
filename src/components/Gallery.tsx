@@ -1,72 +1,158 @@
-
-import React, { useState } from 'react';
-import type { GalleryImage } from '../types';
-import foto1 from "../assets/logo.jpg";
-
-const IMAGES: GalleryImage[] = [
-  { id: 1, url: foto1, title: 'Realismo Negro', category: 'Pixel' },
-  { id: 2, url: foto1, title: 'Neo-Traditional', category: 'Color' },
-  { id: 3, url: foto1, title: 'Geometría Sagrada', category: 'Línea' },
-  { id: 4, url: foto1, title: 'Japanese Art', category: 'Color' },
-  { id: 5, url: foto1, title: 'Micro-Realismo', category: 'Línea' },
-  { id: 6, url: foto1, title: 'Skull Portrait', category: 'Sombra' },
-  { id: 7, url: foto1, title: 'Japanese Art', category: 'Color' },
-  { id: 8, url: foto1, title: 'Micro-Realismo', category: 'Línea' },
-  { id: 9, url: foto1, title: 'Skull Portrait', category: 'Sombra' },
-];
-
-const Gallery: React.FC = () => {
-  const [filter, setFilter] = useState('Todos');
-  const categories = ['Todos', 'Color', 'Sombra', 'Pixel', 'Línea'];
-
-  const filteredImages = filter === 'Todos' 
-    ? IMAGES 
-    : IMAGES.filter(img => img.category === filter);
-
+import Instagram from "./Instagram";
+import { useEffect, useRef, useState } from "react";
+import { gallery } from "../data/site";
+import type { GalleryImage } from "../types";
+const categories = ["Todos", ...new Set(gallery.map((item) => item.category))];
+export default function Gallery() {
+  const [filter, setFilter] = useState("Todos");
+  const [selected, setSelected] = useState<GalleryImage | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const visible = gallery.filter(
+    (item) => filter === "Todos" || item.category === filter,
+  );
+  useEffect(() => {
+    if (selected) {
+      dialog.current?.showModal();
+      const previous = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = previous;
+      };
+    }
+  }, [selected]);
+  function close() {
+    dialog.current?.close();
+    setSelected(null);
+    trigger.current?.focus();
+  }
   return (
-    <div className="max-w-7xl mx-auto px-6">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+    <div className="container">
+      <div className="section-heading">
         <div>
-          <h2 className="text-5xl md:text-6xl font-tattoo text-white">Galería de <span className="text-purple-500">Obras</span></h2>
-          <p className="text-gray-500 mt-2 tracking-widest uppercase text-sm">Selección de nuestros mejores trabajos recientes</p>
+          <p className="eyebrow">EL TRABAJO, DE CERCA</p>
+          <h2 id="gallery-title">
+            Historias
+            <br />
+            <span>en la piel.</span>
+          </h2>
         </div>
-        
-        <div className="flex bg-zinc-900/50 p-1 rounded-sm border border-zinc-800">
-          {categories.map(cat => (
+        <p>
+          Una colección de historias sobre la piel.
+          <br />
+          Las nuevas fotografías llegan pronto.
+        </p>
+      </div>
+      <div className="gallery-toolbar">
+        <div className="filters" role="group" aria-label="Filtrar por estilo">
+          {categories.map((category) => (
             <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-5 py-2 text-xs font-bold uppercase tracking-tighter transition-all ${
-                filter === cat 
-                  ? 'bg-purple-700 text-white' 
-                  : 'text-gray-400 hover:text-white'
-              }`}
+              key={category}
+              type="button"
+              aria-pressed={filter === category}
+              onClick={() => setFilter(category)}
             >
-              {cat}
+              {category}
             </button>
           ))}
         </div>
+        <span className="gallery-label">GALERÍA URKAL INK</span>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredImages.map((img) => (
-          <div key={img.id} className="group relative overflow-hidden bg-zinc-900 border border-zinc-800">
-            <div className="aspect-[3/4] overflow-hidden">
-              <img 
-                src={img.url} 
-                alt={img.title} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
-              />
+      <div className="gallery-grid">
+        {visible.map((item) => (
+          <article className="gallery-item" key={item.id}>
+            {item.url ? (
+              <button
+                className="art-card"
+                type="button"
+                aria-label={`Ampliar ${item.title}`}
+                onClick={(event) => {
+                  trigger.current = event.currentTarget;
+                  setSelected(item);
+                }}
+              >
+                <img
+                  src={item.url}
+                  alt={item.title}
+                  loading="lazy"
+                  width="600"
+                  height="750"
+                />
+                <span className="card-open" aria-hidden="true">
+                  ↗
+                </span>
+              </button>
+            ) : (
+              <div className="photo-placeholder">
+                <span className="photo-index">
+                  {String(item.id).padStart(2, "0")}
+                </span>
+                <div>
+                  <span className="placeholder-frame" aria-hidden="true" />
+                  <p>Fotografía pendiente</p>
+                </div>
+                <span className="placeholder-brand">URKAL INK</span>
+              </div>
+            )}
+            <div className="card-caption">
+              <span>
+                {item.url
+                  ? item.title
+                  : `Espacio ${String(item.id).padStart(2, "0")}`}
+              </span>
+              <span>{item.category}</span>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-              <span className="text-purple-500 font-bold text-xs uppercase tracking-[0.3em] mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{img.category}</span>
-              <h3 className="text-white text-3xl font-tattoo translate-y-4 group-hover:translate-y-0 transition-transform duration-700">{img.title}</h3>
-            </div>
-          </div>
+          </article>
         ))}
       </div>
+      <p className="gallery-note" role="status">
+        {visible.length} espacios{" "}
+        {filter !== "Todos" ? `de ${filter}` : "en la galería"}.{" "}
+        {gallery.some((item) => !item.url)
+          ? "Las fotografías se añadirán próximamente."
+          : ""}
+      </p>
+      <Instagram />
+      <dialog
+        ref={dialog}
+        className="art-dialog"
+        aria-labelledby="art-title"
+        onCancel={(event) => {
+          event.preventDefault();
+          close();
+        }}
+        onClose={() => {
+          setSelected(null);
+          trigger.current?.focus();
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) close();
+        }}
+      >
+        {selected?.url && (
+          <div className="dialog-content">
+            <button
+              className="dialog-close"
+              type="button"
+              onClick={close}
+              aria-label="Cerrar detalle"
+            >
+              ×
+            </button>
+            <div className="dialog-art">
+              <img src={selected.url} alt={selected.title} />
+            </div>
+            <div className="dialog-copy">
+              <p className="eyebrow">{selected.category}</p>
+              <h3 id="art-title">{selected.title}</h3>
+              <p>{selected.description}</p>
+              <a href="#contacto" className="button" onClick={close}>
+                Hablemos de tu tatuaje ↗
+              </a>
+            </div>
+          </div>
+        )}
+      </dialog>
     </div>
   );
-};
-
-export default Gallery;
+}

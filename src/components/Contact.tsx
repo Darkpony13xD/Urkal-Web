@@ -1,314 +1,229 @@
-import React, { useMemo, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
+import { studio } from "../data/site";
 
-type FormData = {
+type Idea = {
   nombre: string;
   zona: string;
   tamano: string;
   estilo: string;
-  presupuesto: string;
-  referencia: string;
   idea: string;
+  referencia: string;
 };
-
-const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    nombre: "",
-    zona: "",
-    tamano: "",
-    estilo: "",
-    presupuesto: "",
-    referencia: "",
-    idea: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const completion = useMemo(() => {
-    const requiredKeys: (keyof FormData)[] = ["nombre", "zona", "tamano", "estilo", "idea"];
-    const filled = requiredKeys.filter((k) => String(formData[k]).trim().length > 0).length;
-    return Math.round((filled / requiredKeys.length) * 100);
-  }, [formData]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const { nombre, idea, zona, tamano, estilo, presupuesto, referencia } = formData;
-
-    // IMPORTANTE: cambia a tu número real (formato internacional sin + ni espacios)
-    const phoneNumber = "5215630127650";
-
-    const message =
-      `¡Hola URKAL INK! Mi nombre es ${nombre}.\n` +
-      `Quiero cotizar un tatuaje:\n` +
-      `- Estilo: ${estilo}\n` +
-      `- Zona del cuerpo: ${zona}\n` +
-      `- Tamaño aprox: ${tamano}\n` +
-      (presupuesto ? `- Presupuesto: ${presupuesto}\n` : "") +
-      (referencia ? `- Referencia: ${referencia}\n` : "") +
-      `- Idea: ${idea}`;
-
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
-  return (
-    <div className="max-w-6xl mx-auto px-6">
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-        {/* Lado izquierdo */}
-        <div className="lg:col-span-2 space-y-8">
-          <h2 className="text-6xl font-tattoo text-white leading-none">
-            Inicia tu <span className="text-purple-500">Viaje</span>
-          </h2>
-
-          <p className="text-gray-400 text-lg">
-            Completa el formulario y te abrimos WhatsApp con tu cotización lista para enviar.
-          </p>
-
-          <div className="flex flex-wrap gap-2 pt-2">
-            <span className="text-xs uppercase tracking-widest text-purple-200/80 bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full">
-              Respuesta rápida
-            </span>
-            <span className="text-xs uppercase tracking-widest text-gray-200/70 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-              Cotización personalizada
-            </span>
-            <span className="text-xs uppercase tracking-widest text-gray-200/70 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-              Sin spam
-            </span>
-          </div>
-
-          <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-4 text-gray-300">
-              <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center border border-purple-500/30">
-                <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <p>------</p>
-            </div>
-
-            <div className="flex items-center gap-4 text-gray-300">
-              <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center border border-purple-500/30">
-                <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <p>-------</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Form */}
-        <div className="lg:col-span-3">
-          {/* Borde degradado */}
-          <div className="p-[1px] rounded-2xl bg-gradient-to-r from-purple-600/40 via-fuchsia-500/15 to-purple-700/40">
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-2xl bg-zinc-950/80 backdrop-blur px-6 py-7 md:px-10 md:py-10 border border-white/5 shadow-[0_0_40px_rgba(168,85,247,0.12)] space-y-6"
-            >
-              {/* Header form */}
-              <div className="flex items-start justify-between gap-6">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.25em] text-gray-400">Cotización</p>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">
-                    Cuéntanos tu idea <span className="text-purple-500">en 30 segundos</span>
-                  </h3>
-                </div>
-
-                <div className="min-w-[140px]">
-                  <p className="text-xs text-gray-400 mb-2 text-right">Progreso</p>
-                  <div className="h-2 rounded-full bg-white/5 border border-white/10 overflow-hidden">
-                    <div
-                      className="h-full bg-purple-600/80"
-                      style={{ width: `${completion}%` }}
-                    />
-                  </div>
-                  <p className="text-xs text-gray-400 mt-2 text-right">{completion}%</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {/* Nombre */}
-                <FieldLabel label="Nombre" required />
-                <div className="md:col-start-1 -mt-3">
-                  <TextInput
-                    name="nombre"
-                    value={formData.nombre}
-                    onChange={handleChange}
-                    placeholder="¿Cómo te llamas?"
-                    required
-                  />
-                </div>
-
-                {/* Zona */}
-                <div className="md:col-start-2">
-                  <FieldLabel label="Zona del cuerpo" required />
-                  <TextInput
-                    name="zona"
-                    value={formData.zona}
-                    onChange={handleChange}
-                    placeholder="Ej: Espalda alta"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {/* Tamaño */}
-                <div>
-                  <FieldLabel label="Tamaño estimado" required />
-                  <TextInput
-                    name="tamano"
-                    value={formData.tamano}
-                    onChange={handleChange}
-                    placeholder="Ej: 15 cm x 10 cm"
-                    required
-                  />
-                </div>
-
-                {/* Estilo */}
-                <div>
-                  <FieldLabel label="Estilo" required />
-                  <SelectInput
-                    name="estilo"
-                    value={formData.estilo}
-                    onChange={handleChange}
-                    required
-                    options={[
-                      { value: "", label: "Elige uno…" },
-                      { value: "Fine line", label: "Fine line" },
-                      { value: "Realismo", label: "Realismo" },
-                      { value: "Blackwork", label: "Blackwork" },
-                      { value: "Tradicional", label: "Tradicional" },
-                      { value: "Neo-tradicional", label: "Neo-tradicional" },
-                      { value: "Lettering", label: "Lettering" },
-                      { value: "Otro", label: "Otro" },
-                    ]}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {/* Presupuesto */}
-                <div>
-                  <FieldLabel label="Presupuesto (opcional)" />
-                  <SelectInput
-                    name="presupuesto"
-                    value={formData.presupuesto}
-                    onChange={handleChange}
-                    options={[
-                      { value: "", label: "Prefiero decirlo por WhatsApp" },
-                      { value: "$$", label: "$ (básico)" },
-                      { value: "$$ - $$$", label: "$$ (medio)" },
-                      { value: "$$$+", label: "$$$ (premium)" },
-                    ]}
-                  />
-                </div>
-
-                {/* Referencia */}
-                <div>
-                  <FieldLabel label="Link de referencia (opcional)" />
-                  <TextInput
-                    name="referencia"
-                    value={formData.referencia}
-                    onChange={handleChange}
-                    placeholder="Instagram/Pinterest/Drive…"
-                  />
-                </div>
-              </div>
-
-              {/* Idea */}
-              <div>
-                <FieldLabel label="Cuéntanos tu idea" required />
-                <Textarea
-                  name="idea"
-                  value={formData.idea}
-                  onChange={handleChange}
-                  placeholder="Estilo, colores, significado, detalles clave…"
-                  rows={4}
-                  required
-                  helper={`${Math.min(formData.idea.length, 800)}/800`}
-                  maxLength={800}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-bold py-5 transition-all flex items-center justify-center gap-3 uppercase tracking-widest text-sm border border-purple-400/20 shadow-[0_0_30px_rgba(168,85,247,0.25)]"
-              >
-                <span>Confirmar por WhatsApp</span>
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 border border-white/10">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </span>
-              </button>
-
-              <p className="text-xs text-gray-500">
-                Al enviar, se abrirá WhatsApp con el mensaje listo. Puedes editarlo antes de mandarlo.
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+const initial: Idea = {
+  nombre: "",
+  zona: "",
+  tamano: "",
+  estilo: "",
+  idea: "",
+  referencia: "",
 };
-
-function FieldLabel({ label, required }: { label: string; required?: boolean }) {
-  return (
-    <label className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
-      {label} {required ? <span className="text-purple-400">*</span> : null}
-    </label>
-  );
-}
-
-function baseInputClass() {
-  return "w-full rounded-xl bg-black/50 border border-white/10 px-4 py-3 text-white outline-none transition-all font-light " +
-    "focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 placeholder:text-gray-600";
-}
-
-function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={`${baseInputClass()} ${props.className ?? ""}`} />;
-}
-
-function Textarea(
-  props: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { helper?: string }
-) {
-  const { helper, ...rest } = props;
-  return (
-    <div className="space-y-2">
-      <textarea
-        {...rest}
-        className={`${baseInputClass()} resize-none min-h-[120px] ${props.className ?? ""}`}
-      />
-      {helper ? <p className="text-xs text-gray-500 text-right">{helper}</p> : null}
-    </div>
-  );
-}
-
-function SelectInput(
-  props: React.SelectHTMLAttributes<HTMLSelectElement> & {
-    options: { value: string; label: string }[];
+export default function Contact() {
+  const [values, setValues] = useState(initial);
+  const [draft, setDraft] = useState("");
+  const [error, setError] = useState("");
+  function change(key: keyof Idea, value: string) {
+    setValues({ ...values, [key]: value });
+    setDraft("");
+    setError("");
   }
-) {
-  const { options, ...rest } = props;
+  function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const fields = Object.fromEntries(
+      Object.entries(values).map(([key, value]) => [key, value.trim()]),
+    ) as Idea;
+    if (
+      !fields.nombre ||
+      !fields.zona ||
+      !fields.tamano ||
+      !fields.estilo ||
+      fields.idea.length < 10
+    ) {
+      setError(
+        "Completa los campos y cuéntanos tu idea con al menos 10 caracteres.",
+      );
+      return;
+    }
+    const message = `Hola ${studio.name}, soy ${fields.nombre}. Me gustaría cotizar un tatuaje.\n\nEstilo: ${fields.estilo}\nZona: ${fields.zona}\nTamaño aproximado: ${fields.tamano}\nIdea: ${fields.idea}${fields.referencia ? `\nReferencia: ${fields.referencia}` : ""}`;
+    setDraft(
+      `https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(message)}`,
+    );
+  }
   return (
-    <select
-      {...rest}
-      className={`${baseInputClass()} appearance-none`}
-    >
-      {options.map((opt) => (
-        <option key={`${opt.value}-${opt.label}`} value={opt.value} className="bg-zinc-900">
-          {opt.label}
-        </option>
-      ))}
-    </select>
+    <div className="container contact-grid">
+      <div className="contact-intro">
+        <p className="eyebrow">TU PRÓXIMO TATUAJE</p>
+        <h2 id="contact-title">
+          Trae una historia.
+          <br />
+          Hagámosla <span className="tattoo-type">tinta.</span>
+        </h2>
+        <p>
+          No necesitas tener todo resuelto.
+          <br />
+          Cuéntanos lo que imaginas y le damos forma contigo.
+        </p>
+        <div className="contact-mark" aria-hidden="true">
+          ✦
+        </div>
+        <div className="contact-note">
+          <span className="signal" />
+          <p>
+            Contacto directo por WhatsApp.
+            <br />
+            <span>El diseño, el precio y la cita se acuerdan contigo.</span>
+          </p>
+        </div>
+        <a
+          className="contact-instagram text-link"
+          href={studio.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          También estamos en Instagram ↗
+        </a>
+        <details>
+          <summary>¿Puedo enviar imágenes de referencia?</summary>
+          <p>
+            Sí. Añade un enlace en el formulario o comparte las imágenes
+            directamente cuando abras la conversación de WhatsApp.
+          </p>
+        </details>
+        <details>
+          <summary>¿Esto confirma mi cita?</summary>
+          <p>
+            No todavía. Este formulario prepara tu consulta; los detalles y la
+            disponibilidad se confirman en la conversación.
+          </p>
+        </details>
+      </div>
+      <form className="idea-form" onSubmit={submit}>
+        <div className="form-heading">
+          <div>
+            <p className="eyebrow">CUÉNTANOS TU IDEA</p>
+            <h3>Vamos a darle forma.</h3>
+          </div>
+          <span aria-hidden="true">↗</span>
+        </div>
+        <p className="form-help">
+          Los campos con * nos ayudan a preparar tu consulta.
+        </p>
+        <div className="form-grid">
+          <label htmlFor="nombre">
+            Tu nombre *
+            <input
+              id="nombre"
+              name="nombre"
+              autoComplete="given-name"
+              placeholder="¿Cómo te llamas?"
+              value={values.nombre}
+              onChange={(event) => change("nombre", event.target.value)}
+              maxLength={80}
+              required
+            />
+          </label>
+          <label htmlFor="estilo">
+            Estilo *
+            <select
+              id="estilo"
+              name="estilo"
+              value={values.estilo}
+              onChange={(event) => change("estilo", event.target.value)}
+              required
+            >
+              <option value="">Selecciona un estilo</option>
+              {[
+                "Blackwork",
+                "Línea fina",
+                "Ornamental",
+                "Realismo",
+                "New School",
+                "Lettering",
+                "Quiero asesoría",
+              ].map((style) => (
+                <option key={style}>{style}</option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="zona">
+            Zona del cuerpo *
+            <input
+              id="zona"
+              name="zona"
+              placeholder="Ej. Antebrazo"
+              value={values.zona}
+              onChange={(event) => change("zona", event.target.value)}
+              maxLength={100}
+              required
+            />
+          </label>
+          <label htmlFor="tamano">
+            Tamaño aproximado *
+            <input
+              id="tamano"
+              name="tamano"
+              placeholder="Ej. 10 × 15 cm"
+              value={values.tamano}
+              onChange={(event) => change("tamano", event.target.value)}
+              maxLength={100}
+              required
+            />
+          </label>
+          <label className="full-field" htmlFor="idea">
+            ¿Qué tienes en mente? *
+            <textarea
+              id="idea"
+              name="idea"
+              placeholder="Un símbolo, una historia, algo que te mueve…"
+              rows={4}
+              minLength={10}
+              maxLength={800}
+              value={values.idea}
+              onChange={(event) => change("idea", event.target.value)}
+              required
+            />
+            <span className="character-count">{values.idea.length} / 800</span>
+          </label>
+          <label className="full-field" htmlFor="referencia">
+            Enlace de referencia <span className="optional">(opcional)</span>
+            <input
+              id="referencia"
+              name="referencia"
+              type="url"
+              placeholder="https://..."
+              value={values.referencia}
+              onChange={(event) => change("referencia", event.target.value)}
+              maxLength={500}
+            />
+          </label>
+        </div>
+        {error && (
+          <p className="form-error" role="alert">
+            {error}
+          </p>
+        )}
+        <button className="button form-submit" type="submit">
+          Preparar mi consulta <span aria-hidden="true">↗</span>
+        </button>
+        <p className="form-privacy">
+          Nada se envía automáticamente. Prepararemos un mensaje que podrás
+          revisar en WhatsApp.
+        </p>
+        {draft && (
+          <div className="draft-ready" role="status">
+            <strong>Tu idea está lista para conversar.</strong>
+            <p>Abre WhatsApp, revisa el mensaje y envíalo cuando quieras.</p>
+            <a
+              className="button"
+              href={draft}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir WhatsApp ↗
+            </a>
+          </div>
+        )}
+      </form>
+    </div>
   );
 }
-
-export default Contact;

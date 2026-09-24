@@ -1,42 +1,1533 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* URKAL: negro, blanco y fotografía; el morado es únicamente un acento. */
+.site-shell {
+  overflow: clip;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #151515f5;
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.brand img {
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+}
+.brand > span {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  font-weight: 700;
+}
+.brand small {
+  display: block;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 2.8px;
+  margin-top: 7px;
+  color: #a8a8a3;
+}
+.navigation {
+  display: flex;
+  gap: 31px;
+}
+.navigation a {
+  font-size: 11px;
+  color: #aeaeaa;
+  padding: 8px 0;
+}
+.navigation a:hover,
+.navigation a[aria-current] {
+  color: #fff;
+}
+.navigation a[aria-current] {
+  border-bottom: 2px solid var(--accent);
+}
+.nav-cta {
+  background: none;
+  border-color: #777771;
+  color: #eae8e1;
+  min-height: 40px;
+}
+.nav-cta:hover {
+  color: #151515;
+}
+.menu-toggle {
+  display: none;
+}
+.style-ribbon {
+  display: none;
+}
+h2 {
+  font-family: var(--display);
+  font-size: clamp(43px, 4.7vw, 66px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  margin-bottom: 0;
+}
+.gallery-section {
+  background: #eeece6;
+  color: #222;
+  --muted: #74736e;
+  --line: #c5c3bb;
+  padding-block: 68px 65px;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 35px;
+  margin-bottom: 32px;
+}
+.section-heading h2 > span {
+  color: #76756e;
+}
+.section-heading > p {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 320px;
+  margin-bottom: 3px;
+}
+.gallery-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 16px 0 23px;
+  gap: 20px;
+}
+.filters {
+  display: flex;
+  gap: 21px;
+  flex-wrap: wrap;
+}
+.filters button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 5px 0;
+  font-size: 11px;
+  color: #74736e;
+}
+.filters button[aria-pressed="true"] {
+  color: #222;
+  border-bottom-color: #86649f;
+}
+.filters button:hover {
+  color: #222;
+}
+.gallery-label {
+  font-size: 8px;
+  letter-spacing: 1.7px;
+  color: #85837a;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 24px;
+  align-items: start;
+}
+.gallery-item:nth-child(3n + 2) {
+  padding-top: 45px;
+}
+.gallery-item {
+  min-width: 0;
+}
+.photo-placeholder,
+.art-card {
+  position: relative;
+  aspect-ratio: 4/5;
+  width: 100%;
+  background: #d6d4cd;
+}
+.gallery-item:nth-child(3n + 2) .photo-placeholder {
+  background: #c5c5c0;
+}
+.gallery-item:nth-child(3n) .photo-placeholder {
+  background: #dad8d2;
+}
+.photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #83827c;
+}
+.photo-index {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  font-size: 11px;
+}
+.photo-placeholder > div {
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.placeholder-frame {
+  display: block;
+  width: 45px;
+  height: 57px;
+  border: 1px solid #a4a39b;
+  margin: 0 auto 13px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.photo-placeholder p {
+  font-size: 10px;
+  letter-spacing: 0.2px;
+  margin: 0;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.placeholder-brand {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #aaa9a1;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.card-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 0 0;
+  font-size: 11px;
+}
+.card-caption > span:last-child {
+  font-size: 9px;
+  color: #7d7b72;
+}
+.art-card {
+  display: block;
+  border: 0;
+  padding: 0;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.art-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.art-card:hover img {
+  transform: scale(1.03);
+}
+.card-open {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: #eeece6;
+  color: #222;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+}
+.gallery-note {
+  font-size: 10px;
+  color: #858278;
+  margin: 29px 0 0;
+}
+.studio-section {
+  background: #181818;
+}
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.studio-statement h2 {
+  text-transform: uppercase;
+}
+.studio-statement h2 .tattoo-type {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.76em;
+  font-weight: 400;
+  text-transform: none;
+  display: inline-block;
+  margin-top: 9px;
+  color: #b6b4ad;
+  letter-spacing: -1px;
+}
+.studio-statement > p:not(.eyebrow) {
+  font-size: 14px;
+  color: #a8a7a1;
+  max-width: 520px;
+  margin: 25px 0 18px;
+}
+.studio-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+}
+.studio-seal img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+.studio-seal .mono {
+  font-size: 8px;
+  color: #aaa7a4;
+  letter-spacing: 1px;
+}
+.process-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block: 1px solid var(--line);
+  padding: 18px 0;
+  margin-top: 58px;
+}
+.process-heading .eyebrow {
+  margin: 0;
+  font-size: 9px;
+}
+.process-heading .mono {
+  font-size: 8px;
+  color: #898985;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.process-grid article {
+  padding: 23px 27px 0 0;
+}
+.process-grid article + article {
+  padding-left: 27px;
+  border-left: 1px solid var(--line);
+}
+.process-number {
+  font-family: var(--display);
+  font-size: 30px;
+  color: #9f9c97;
+}
+.process-number > span {
+  display: none;
+}
+.process-grid h3 {
+  font-size: 16px;
+  margin: 18px 0 11px;
+}
+.process-grid p {
+  font-size: 11px;
+  color: #a5a29b;
+  margin: 0;
+}
+.contact-section {
+  border-top: 1px solid var(--line);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 75px;
+}
+.contact-intro h2 {
+  text-transform: uppercase;
+  font-size: clamp(45px, 4.8vw, 66px);
+}
+.contact-intro h2 .tattoo-type {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.9em;
+  text-transform: none;
+  color: #ddd9d2;
+}
+.contact-intro > p:not(.eyebrow) {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 24px 0;
+}
+.contact-mark {
+  display: none;
+}
+.contact-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 31px 0;
+}
+.contact-note p {
+  font-size: 11px;
+  margin: 0;
+}
+.contact-note p span {
+  color: var(--muted);
+  font-size: 10px;
+}
+details {
+  border-top: 1px solid var(--line);
+}
+details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+summary {
+  padding: 17px 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 11px;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary:after {
+  content: "+";
+  color: var(--accent);
+}
+details[open] summary:after {
+  content: "−";
+}
+details p {
+  font-size: 11px;
+  color: var(--muted);
+  padding-bottom: 15px;
+  margin: 0;
+}
+.idea-form {
+  border: 1px solid #41413d;
+  padding: 33px;
+  background: #1c1c1c;
+  align-self: start;
+}
+.form-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.form-heading .eyebrow {
+  font-size: 8px;
+  margin-bottom: 12px;
+}
+.form-heading h3 {
+  font-family: var(--display);
+  font-size: 31px;
+  margin-bottom: 11px;
+}
+.form-heading > span {
+  display: none;
+}
+.form-help {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 17px;
+}
+.form-grid label {
+  font-size: 10px;
+  display: block;
+  min-width: 0;
+}
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  display: block;
+  width: 100%;
+  margin-top: 9px;
+  padding: 12px 10px;
+  border: 1px solid #44443f;
+  background: #171717;
+  min-height: 44px;
+  color: #eae8e1;
+  border-radius: 0;
+  font-size: 11px;
+}
+.form-grid textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+.form-grid input::placeholder,
+.form-grid textarea::placeholder {
+  color: #8d8b84;
+}
+.form-grid :is(input, select, textarea):focus {
+  outline: 1px solid var(--accent);
+}
+.full-field {
+  grid-column: 1/-1;
+}
+.optional {
+  color: var(--muted);
+  font-weight: 400;
+}
+.character-count {
+  display: block;
+  text-align: right;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.form-submit {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.form-privacy {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 15px 0 0;
+}
+.form-error {
+  font-size: 12px;
+  color: #efaab3;
+  margin-top: 15px;
+}
+.draft-ready {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 22px;
+  font-size: 13px;
+}
+.draft-ready p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 44px;
+  background: #111;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 35px;
+}
+.footer-wordmark {
+  font-family: var(--display);
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.footer-wordmark > span {
+  font-size: 24px;
+  vertical-align: middle;
+  margin-left: 10px;
+  color: var(--accent);
+}
+.footer-top p {
+  font-family: var(--display);
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 0;
+}
+.footer-top p span {
+  color: #8f8c85;
+}
+.back-top {
+  font-size: 8px;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding: 21px 0;
+  font-size: 8px;
+  color: #96938c;
+}
+.footer-bottom a {
+  color: #d0ccc4;
+}
+.art-dialog {
+  padding: 0;
+  background: #1b1b1b;
+  border: 1px solid #555;
+  color: #eee;
+  width: min(900px, calc(100% - 36px));
+  max-height: 90dvh;
+  overflow: auto;
+}
+.art-dialog::backdrop {
+  background: #080808e8;
+}
+.dialog-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  position: relative;
+}
+.dialog-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  background: #eee;
+  color: #222;
+  border: 0;
+  font-size: 25px;
+}
+.dialog-art {
+  display: grid;
+  place-items: center;
+  background: #111;
+}
+.dialog-art img {
+  width: 100%;
+  height: auto;
+  max-height: 80dvh;
+  object-fit: contain;
+}
+.dialog-copy {
+  padding: 60px 28px 35px;
+  align-self: center;
+}
+.dialog-copy h3 {
+  font-family: var(--display);
+  font-size: 36px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.dialog-copy p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.dialog-copy .button {
+  margin-top: 14px;
+  font-size: 10px;
+  padding-inline: 18px;
+}
+@media (max-width: 1100px) {
+  .container {
+    width: calc(100% - 64px);
   }
-  to {
-    transform: rotate(360deg);
+  .navigation {
+    gap: 22px;
+  }
+  .studio-grid,
+  .contact-grid {
+    gap: 45px;
+  }
+  .idea-form {
+    padding: 27px;
+  }
+  .section {
+    padding-block: 75px;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 800px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+  .nav-inner {
+    height: 74px;
+    gap: 14px;
+  }
+  .brand > span {
+    font-size: 24px;
+  }
+  .brand img {
+    width: 34px;
+    height: 34px;
+  }
+  .nav-cta {
+    margin-left: auto;
+    font-size: 10px;
+    padding: 9px 11px;
+    gap: 14px;
+  }
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: 1px solid #64645d;
+    color: #eee;
+    padding: 10px;
+    font-size: 10px;
+  }
+  .navigation {
+    display: none;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    right: 0;
+    background: #191919;
+    border-bottom: 1px solid #555;
+    padding: 15px 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .navigation.is-open {
+    display: grid;
+  }
+  .navigation a {
+    padding: 11px;
+  }
+  .navigation a[aria-current] {
+    border-bottom: 0;
+    color: var(--accent);
+  }
+  .section-heading {
+    gap: 25px;
+  }
+  .section-heading > p {
+    font-size: 11px;
+    max-width: 230px;
+  }
+  .gallery-grid {
+    gap: 25px 17px;
+  }
+  .gallery-item:nth-child(3n + 2) {
+    padding-top: 27px;
+  }
+  .photo-index {
+    left: 13px;
+    top: 12px;
+    font-size: 9px;
+  }
+  .photo-placeholder p {
+    font-size: 8px;
+  }
+  .placeholder-brand {
+    left: 13px;
+    bottom: 12px;
+    font-size: 12px;
+  }
+  .placeholder-frame {
+    width: 32px;
+    height: 41px;
+  }
+  .card-caption {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 11px;
+  }
+  .gallery-label {
+    font-size: 7px;
+  }
+  .studio-grid {
+    gap: 35px;
+    grid-template-columns: 1.5fr 1fr;
+  }
+  .studio-seal img {
+    width: 130px;
+    height: 130px;
+  }
+  .studio-seal .mono {
+    font-size: 7px;
+  }
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 0;
+  }
+  .process-grid article:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .contact-intro {
+    max-width: 600px;
+  }
+  .idea-form {
+    padding: 30px;
+  }
+  .footer-wordmark {
+    font-size: 47px;
+  }
+  .footer-top p {
+    font-size: 17px;
+  }
+  .footer-bottom > span:nth-child(2) {
+    display: none;
   }
 }
-
-.card {
-  padding: 2em;
+@media (max-width: 560px) {
+  .container {
+    width: calc(100% - 36px);
+  }
+  .nav-cta {
+    display: none;
+  }
+  .menu-toggle {
+    margin-left: auto;
+  }
+  .section {
+    padding-block: 54px;
+  }
+  h2 {
+    font-size: 44px;
+  }
+  .eyebrow {
+    font-size: 9px;
+    margin-bottom: 16px;
+  }
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+    margin-bottom: 25px;
+  }
+  .section-heading > p {
+    font-size: 11px;
+    max-width: none;
+  }
+  .gallery-toolbar {
+    padding-block: 14px 20px;
+  }
+  .filters {
+    gap: 18px;
+  }
+  .filters button {
+    font-size: 10px;
+  }
+  .gallery-label {
+    display: none;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 14px;
+  }
+  .gallery-item:nth-child(3n + 2) {
+    padding-top: 0;
+  }
+  .gallery-item:nth-child(2n) {
+    padding-top: 30px;
+  }
+  .photo-placeholder,
+  .art-card {
+    aspect-ratio: 3/4;
+  }
+  .photo-index {
+    font-size: 9px;
+    top: 10px;
+    left: 10px;
+  }
+  .photo-placeholder p {
+    font-size: 8px;
+  }
+  .placeholder-brand {
+    font-size: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+  .placeholder-frame {
+    width: 26px;
+    height: 34px;
+    margin-bottom: 9px;
+  }
+  .card-caption {
+    padding-top: 10px;
+    font-size: 10px;
+    gap: 3px;
+  }
+  .card-caption > span:last-child {
+    font-size: 8px;
+  }
+  .gallery-note {
+    font-size: 9px;
+    line-height: 1.7;
+    margin-top: 24px;
+  }
+  .studio-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .studio-statement h2 {
+    font-size: 44px;
+  }
+  .studio-statement > p:not(.eyebrow) {
+    font-size: 12px;
+    margin-top: 21px;
+  }
+  .studio-seal {
+    flex-direction: row;
+    gap: 20px;
+    text-align: left;
+  }
+  .studio-seal img {
+    width: 80px;
+    height: 80px;
+  }
+  .studio-seal .mono {
+    font-size: 8px;
+  }
+  .process-heading {
+    margin-top: 38px;
+  }
+  .process-heading .mono {
+    display: none;
+  }
+  .process-grid article {
+    padding-right: 17px;
+  }
+  .process-grid article + article {
+    padding-left: 17px;
+  }
+  .process-grid article:nth-child(3) {
+    padding-left: 0;
+  }
+  .process-grid h3 {
+    font-size: 15px;
+  }
+  .process-grid p {
+    font-size: 11px;
+  }
+  .contact-intro h2 {
+    font-size: 47px;
+  }
+  .contact-intro > p:not(.eyebrow) {
+    font-size: 12px;
+  }
+  .idea-form {
+    padding: 25px 19px;
+  }
+  .form-heading h3 {
+    font-size: 30px;
+  }
+  .form-grid {
+    gap: 20px 13px;
+  }
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    font-size: 16px;
+    padding: 10px 7px;
+    min-height: 46px;
+  }
+  .form-grid label {
+    font-size: 10px;
+  }
+  .form-grid input::placeholder,
+  .form-grid textarea::placeholder {
+    font-size: 12px;
+  }
+  .form-grid label:has(select),
+  .form-grid label:first-child {
+    grid-column: 1/-1;
+  }
+  .form-help {
+    font-size: 9px;
+  }
+  .footer-top {
+    flex-wrap: wrap;
+    gap: 22px;
+    padding-bottom: 28px;
+  }
+  .footer-wordmark {
+    font-size: 47px;
+  }
+  .footer-top p {
+    font-size: 15px;
+  }
+  .back-top {
+    width: 100%;
+    font-size: 8px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 8px;
+  }
+  .dialog-content {
+    grid-template-columns: 1fr;
+  }
+  .dialog-art img {
+    max-height: 55dvh;
+  }
+  .dialog-copy {
+    padding: 27px;
+  }
+  .dialog-copy h3 {
+    font-size: 32px;
+  }
+  .dialog-copy .button {
+    width: 100%;
+  }
 }
-
-.read-the-docs {
-  color: #888;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+/* Portada: identidad del estudio, jerarquía centrada y acento morado mínimo. */
+/* Identidad grabada: una portada de estudio, con el emblema como protagonista. */
+.tattoo-cover {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 0 65px;
+  padding-top: 28px;
+}
+.tattoo-art {
+  position: relative;
+  padding: 0 0 25px;
+}
+.tattoo-art img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.art-signature {
+  display: block;
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  font-style: italic;
+  color: #9d9487;
+  margin-top: -11px;
+}
+.tattoo-copy {
+  padding: 22px 0 32px;
+}
+.tattoo-copy .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  color: #b3a99b;
+  margin-bottom: 20px;
+}
+.tattoo-copy h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(80px, 8vw, 115px);
+  font-weight: 500;
+  letter-spacing: -4px;
+  line-height: 0.79;
+  margin: 0;
+  color: #eee6d8;
+}
+.tattoo-copy h1 em {
+  font-weight: 500;
+  display: inline-block;
+  padding: 9px 4px 9px 0;
+}
+.tattoo-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 190px;
+  margin: 23px 0;
+  color: #a889bc;
+  font-size: 17px;
+}
+.tattoo-rule span {
+  height: 1px;
+  flex: 1;
+  background: #706774;
+}
+.tattoo-intro {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 23px;
+  color: #d6cdbd;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.tattoo-description {
+  font-size: 12px;
+  color: #a6a19a;
+  line-height: 1.85;
+  max-width: 345px;
+  margin-bottom: 25px;
+}
+.tattoo-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.tattoo-actions .button {
+  background: #e9dfce;
+  border-color: #e9dfce;
+  font-size: 11px;
+  padding-inline: 18px;
+  gap: 20px;
+}
+.tattoo-actions .button:hover {
+  background: #c1a5dc;
+  border-color: #c1a5dc;
+}
+.tattoo-actions .text-link {
+  font-size: 11px;
+  color: #d6c9b6;
+  border-color: #6a6158;
+}
+.tattoo-footnote {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #a0988b;
+  margin: 20px 0 0;
+}
+.tattoo-bottom {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  border-block: 1px solid #4c443d;
+  padding: 22px 0;
+  margin-top: 12px;
+  color: #beb09b;
+  font-family: var(--display);
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.tattoo-bottom b {
+  font-size: 12px;
+  font-weight: 400;
+  color: #ac8bcc;
+}
+.brand img {
+  border-radius: 0;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+.brand > span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #e8dfd0;
+}
+.studio-seal img {
+  border-radius: 0;
+  width: 240px;
+  height: auto;
+}
+.site-header {
+  background: #151515f5;
+}
+.gallery-section {
+  background: #e8e4dc;
+}
+.section-heading h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(43px, 4.9vw, 66px);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -1.4px;
+}
+.section-heading h2 span {
+  font-style: italic;
+  font-weight: 500;
+  color: #5e5b54;
+}
+.studio-statement h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  text-transform: none;
+  font-size: clamp(44px, 4.7vw, 65px);
+}
+.studio-statement h2 .tattoo-type {
+  font-family: inherit;
+  font-size: 1em;
+}
+@media (max-width: 1100px) {
+  .tattoo-cover {
+    gap: 0 35px;
+  }
+  .tattoo-copy h1 {
+    font-size: 88px;
+  }
+  .tattoo-art {
+    padding-bottom: 20px;
+  }
+  .tattoo-description {
+    font-size: 11px;
+  }
+  .tattoo-intro {
+    font-size: 21px;
+  }
+  .tattoo-actions {
+    gap: 18px;
+  }
+  .tattoo-actions .button {
+    font-size: 10px;
+    padding-inline: 14px;
+  }
+}
+@media (max-width: 800px) {
+  .tattoo-cover {
+    gap: 0 24px;
+    padding-top: 22px;
+  }
+  .tattoo-copy {
+    padding-block: 20px;
+  }
+  .tattoo-copy h1 {
+    font-size: 75px;
+    letter-spacing: -3px;
+  }
+  .tattoo-copy .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .tattoo-rule {
+    margin-block: 17px;
+    max-width: 140px;
+  }
+  .tattoo-intro {
+    font-size: 20px;
+  }
+  .tattoo-description {
+    font-size: 11px;
+  }
+  .tattoo-bottom {
+    font-size: 12px;
+    letter-spacing: 1px;
+    gap: 13px;
+  }
+  .art-signature {
+    font-size: 13px;
+  }
+  .tattoo-footnote {
+    font-size: 12px;
+  }
+  .brand img {
+    width: 46px;
+    height: 46px;
+  }
+  .brand > span {
+    font-size: 24px;
+  }
+}
+@media (max-width: 560px) {
+  .tattoo-cover {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 10px;
+  }
+  .tattoo-art {
+    max-width: 340px;
+    width: 100%;
+    margin-inline: auto;
+    padding-bottom: 0;
+  }
+  .art-signature {
+    display: none;
+  }
+  .tattoo-copy {
+    padding: 2px 0 28px;
+    text-align: center;
+  }
+  .tattoo-copy .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .tattoo-copy h1 {
+    font-size: 83px;
+    letter-spacing: -3px;
+    line-height: 0.85;
+  }
+  .tattoo-copy h1 br {
+    display: none;
+  }
+  .tattoo-copy h1 {
+    font-size: clamp(53px, 12.5vw, 72px);
+    letter-spacing: -2px;
+  }
+  .tattoo-copy h1 em {
+    padding-left: 8px;
+  }
+  .tattoo-rule {
+    margin: 17px auto;
+  }
+  .tattoo-intro {
+    font-size: 21px;
+  }
+  .tattoo-description {
+    margin-inline: auto;
+    font-size: 12px;
+    max-width: 300px;
+  }
+  .tattoo-actions {
+    justify-content: center;
+    gap: 21px;
+  }
+  .tattoo-actions .button {
+    font-size: 10px;
+    min-height: 46px;
+    padding: 13px 15px;
+  }
+  .tattoo-footnote {
+    font-size: 14px;
+  }
+  .tattoo-bottom {
+    font-size: 9px;
+    gap: 10px;
+    letter-spacing: 0.7px;
+    padding-block: 18px;
+    margin: 0;
+  }
+  .tattoo-bottom > span:last-child,
+  .tattoo-bottom > b:nth-last-child(2) {
+    display: none;
+  }
+  .studio-seal img {
+    width: 110px;
+  }
+  .section-heading h2 {
+    font-size: 47px;
+  }
+  .studio-statement h2 {
+    font-size: 46px;
+  }
+}
+.contact-intro h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  text-transform: none;
+  font-weight: 500;
+}
+.contact-intro h2 .tattoo-type {
+  font-family: inherit;
+  font-size: 1em;
+}
+.form-heading h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+}
+.footer-wordmark {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: 47px;
+}
+.instagram-section {
+  margin-top: 55px;
+  padding-top: 35px;
+  border-top: 1px solid #beb9ad;
+}
+.instagram-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.instagram-heading .eyebrow {
+  font-size: 9px;
+  margin-bottom: 13px;
+}
+.instagram-heading h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 39px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  color: #302c29;
+}
+.instagram-heading h3 em {
+  font-weight: 500;
+}
+.instagram-heading p:not(.eyebrow) {
+  font-size: 12px;
+  color: #737069;
+  max-width: 430px;
+  margin: 0;
+}
+.instagram-profile {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  color: #34302e;
+  flex-shrink: 0;
+  border-bottom: 1px solid #b7aabc;
+  padding: 12px 0;
+}
+.instagram-profile svg {
+  width: 30px;
+  height: 30px;
+  color: #805a97;
+}
+.instagram-profile span {
+  font-size: 13px;
+}
+.instagram-profile small {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: #777069;
+}
+.instagram-profile:hover {
+  color: #805a97;
+}
+.instagram-actions {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-top: 25px;
+}
+.instagram-actions .button {
+  background: #292629;
+  color: #efebe4;
+  border-color: #292629;
+  font-size: 11px;
+  min-height: 44px;
+  padding: 11px 18px;
+}
+.instagram-actions .button:hover {
+  background: #594162;
+  border-color: #594162;
+}
+.instagram-actions > span {
+  font-size: 10px;
+  color: #79766d;
+}
+.instagram-posts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+.instagram-post-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+.instagram-post-heading h4 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+.instagram-post-heading > span {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #797168;
+}
+.instagram-post iframe {
+  display: block;
+  width: 100%;
+  height: 650px;
+  border: 1px solid #cdc8bd;
+  background: white;
+}
+.instagram-post .text-link {
+  font-size: 11px;
+  margin-top: 13px;
+}
+.instagram-help {
+  grid-column: 1/-1;
+  font-size: 10px;
+  color: #79766d;
+  margin: 0;
+}
+.contact-instagram {
+  margin: 0 0 27px;
+  color: #c5b0d5;
+  font-size: 11px;
+}
+@media (max-width: 900px) {
+  .instagram-posts {
+    grid-template-columns: 1fr;
+    max-width: 550px;
+  }
+  .instagram-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+@media (max-width: 560px) {
+  .instagram-section {
+    margin-top: 35px;
+    padding-top: 28px;
+  }
+  .instagram-heading h3 {
+    font-size: 33px;
+  }
+  .instagram-heading p:not(.eyebrow) {
+    font-size: 11px;
+  }
+  .instagram-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .instagram-profile span {
+    font-size: 12px;
+  }
+  .instagram-post iframe {
+    height: 610px;
+  }
+}
+.instagram-selections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 27px;
+}
+.instagram-selection {
+  display: block;
+  border: 1px solid #c4bdb1;
+  padding: 23px 25px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.instagram-selection:hover {
+  background: #ded8ce;
+  border-color: #a18aac;
+}
+.instagram-category {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #80658e;
+}
+.instagram-selection h4 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 28px;
+  margin: 9px 0;
+}
+.instagram-selection p {
+  font-size: 11px;
+  color: #777167;
+  margin: 0 0 23px;
+}
+.instagram-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #4e454e;
+}
+.instagram-view > span {
+  font-size: 20px;
+  color: #886399;
+}
+.instagram-caption {
+  font-size: 10px;
+  color: #79766d;
+  margin: 17px 0 0;
+}
+@media (max-width: 560px) {
+  .instagram-selections {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .instagram-selection {
+    padding: 20px;
+  }
 }
