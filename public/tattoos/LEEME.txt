@@ -1,4 +1,32 @@
-Coloca aquí las fotografías de los tatuajes.
-Después asigna su ruta, título, categoría y descripción en src/data/site.ts.
-Ejemplo: url: '/tattoos/pieza-01.webp'
-Las fotos aparecerán en la galería y podrán ampliarse con un clic.
+Galería organizada por tatuaje. Cada pieza tiene una miniatura y una o varias vistas.
+Los archivos originales de WhatsApp se conservan en su carpeta de origen.
+Edita títulos, categorías y vistas en src/data/site.ts.
+
+Selección de fotografías:
+manga-calaveras-01.webp <- WhatsApp Image 2026-09-24 at 3.17.06 PM (2).jpeg
+manga-calaveras-02.webp <- WhatsApp Image 2026-09-24 at 3.17.06 PM (1).jpeg
+manga-calaveras-03.webp <- WhatsApp Image 2026-09-24 at 3.17.05 PM (3).jpeg
+manga-calaveras-04.webp <- WhatsApp Image 2026-09-24 at 3.17.05 PM (5).jpeg
+flores-rojas-01.webp <- WhatsApp Image 2026-09-24 at 3.17.18 PM (1).jpeg
+flores-rojas-02.webp <- WhatsApp Image 2026-09-24 at 3.17.18 PM.jpeg
+polillas-01.webp <- WhatsApp Image 2026-09-24 at 3.17.10 PM (3).jpeg
+polillas-02.webp <- WhatsApp Image 2026-09-24 at 3.17.10 PM (2).jpeg
+medusa-01.webp <- WhatsApp Image 2026-09-24 at 3.17.10 PM.jpeg
+anime-01.webp <- WhatsApp Image 2026-09-24 at 3.17.18 PM (4).jpeg
+calavera-daga-01.webp <- WhatsApp Image 2026-09-24 at 3.17.11 PM (1).jpeg
+ojo-01.webp <- WhatsApp Image 2026-09-24 at 3.17.10 PM (4).jpeg
+corazon-floral-01.webp <- WhatsApp Image 2026-09-24 at 3.17.11 PM (3).jpeg
+alas-01.webp <- WhatsApp Image 2026-09-24 at 3.17.17 PM (4).jpeg
+alas-02.webp <- WhatsApp Image 2026-09-24 at 3.17.17 PM (3).jpeg
+daga-roja-01.webp <- WhatsApp Image 2026-09-24 at 3.17.13 PM (1).jpeg
+triple-luna-01.webp <- WhatsApp Image 2026-09-24 at 3.17.11 PM.jpeg
+cosmos-01.webp <- WhatsApp Image 2026-09-24 at 3.17.18 PM (6).jpeg
+retrato-velo-01.webp <- WhatsApp Image 2026-09-24 at 3.17.11 PM (5).jpeg
+retrato-velo-02.webp <- WhatsApp Image 2026-09-24 at 3.17.13 PM.jpeg
+lobo-01.webp <- WhatsApp Image 2026-09-24 at 3.17.11 PM (2).jpeg
+serpiente-simbolo-01.webp <- WhatsApp Image 2026-09-24 at 3.17.13 PM (2).jpeg
+conejo-01.webp <- WhatsApp Image 2026-09-24 at 3.17.11 PM (4).jpeg
+brujula-01.webp <- WhatsApp Image 2026-09-24 at 3.17.10 PM (1).jpeg
+figura-alada-01.webp <- WhatsApp Image 2026-09-24 at 3.17.08 PM (4).jpeg
+letras-01.webp <- WhatsApp Image 2026-09-24 at 3.17.09 PM (2).jpeg
+tobillo-color-01.webp <- WhatsApp Image 2026-09-24 at 3.17.08 PM (3).jpeg

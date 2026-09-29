@@ -6,6 +6,8 @@ const categories = ["Todos", ...new Set(gallery.map((item) => item.category))];
 export default function Gallery() {
   const [filter, setFilter] = useState("Todos");
   const [selected, setSelected] = useState<GalleryImage | null>(null);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const selectedPhotos = selected?.photos ?? (selected?.url ? [selected.url] : []);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
   const visible = gallery.filter(
@@ -40,7 +42,7 @@ export default function Gallery() {
         <p>
           Una colección de historias sobre la piel.
           <br />
-          Las nuevas fotografías llegan pronto.
+          Abre cada pieza y descubre su color.
         </p>
       </div>
       <div className="gallery-toolbar">
@@ -68,16 +70,18 @@ export default function Gallery() {
                 aria-label={`Ampliar ${item.title}`}
                 onClick={(event) => {
                   trigger.current = event.currentTarget;
+                  setPhotoIndex(0);
                   setSelected(item);
                 }}
               >
                 <img
-                  src={item.url}
+                  src={item.thumbnail ?? item.url}
                   alt={item.title}
                   loading="lazy"
                   width="600"
                   height="750"
                 />
+                <span className="card-reveal" aria-hidden="true">Ver a color</span>
                 <span className="card-open" aria-hidden="true">
                   ↗
                 </span>
@@ -106,7 +110,7 @@ export default function Gallery() {
         ))}
       </div>
       <p className="gallery-note" role="status">
-        {visible.length} espacios{" "}
+        {visible.length} tatuajes{" "}
         {filter !== "Todos" ? `de ${filter}` : "en la galería"}.{" "}
         {gallery.some((item) => !item.url)
           ? "Las fotografías se añadirán próximamente."
@@ -140,12 +144,30 @@ export default function Gallery() {
               ×
             </button>
             <div className="dialog-art">
-              <img src={selected.url} alt={selected.title} />
+              <img src={selectedPhotos[photoIndex]} alt={`${selected.title}, vista ${photoIndex + 1}`} />
             </div>
             <div className="dialog-copy">
               <p className="eyebrow">{selected.category}</p>
               <h3 id="art-title">{selected.title}</h3>
               <p>{selected.description}</p>
+              {selectedPhotos.length > 1 && (
+                <div className="photo-views">
+                  <p aria-live="polite">Vista {photoIndex + 1} de {selectedPhotos.length}</p>
+                  <div className="photo-thumbnails" role="group" aria-label="Vistas del tatuaje">
+                    {selectedPhotos.map((url, index) => (
+                      <button
+                        key={url}
+                        type="button"
+                        aria-label={`Ver vista ${index + 1} de ${selected.title}`}
+                        aria-pressed={photoIndex === index}
+                        onClick={() => setPhotoIndex(index)}
+                      >
+                        <img src={url} alt="" loading="lazy" width="64" height="80" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
               <a href="#contacto" className="button" onClick={close}>
                 Hablemos de tu tatuaje ↗
               </a>
